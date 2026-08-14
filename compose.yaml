@@ -1,0 +1,21 @@
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+      - /app/tmp
+      - go-mod-cache:/go/pkg/mod
+      - go-build-cache:/root/.cache/go-build
+    environment:
+      - PORT=8080
+      - APP_ENV=development
+    stdin_open: true
+    tty: true
+
+volumes:
+  go-mod-cache:
+  go-build-cache:
