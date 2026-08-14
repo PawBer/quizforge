@@ -8,6 +8,7 @@ services:
     volumes:
       - .:/app
       - /app/tmp
+      - /app/node_modules
       - go-mod-cache:/go/pkg/mod
       - go-build-cache:/root/.cache/go-build
     environment:

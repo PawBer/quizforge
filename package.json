@@ -1,0 +1,25 @@
+{
+  "name": "quizforge",
+  "version": "1.0.0",
+  "description": "This will be a webapp for doing different kinds of quizzes. Built with htmx for interactivity.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PawBer/quizforge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/PawBer/quizforge/issues"
+  },
+  "homepage": "https://github.com/PawBer/quizforge#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

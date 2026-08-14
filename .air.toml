@@ -5,13 +5,13 @@ tmp_dir = "tmp"
 
 [build]
   # Pre-command generates Templ files, then builds the Go web server binary
-  cmd = "templ generate && go build -o ./tmp/main ./cmd/web"
+  cmd = "templ generate && npx tailwindcss -i ./input.css -o ./static/style.css && go build -o ./tmp/main ./cmd/web"
   bin = "./tmp/main"
   full_bin = ""
-  include_ext = ["go", "tpl", "tmpl", "html", "templ"]
+  include_ext = ["go", "tpl", "tmpl", "html", "templ", "css"]
   exclude_dir = ["assets", "tmp", "vendor", ".git"]
   include_dir = []
-  exclude_file = []
+  exclude_file = ["static/style.css"]
   exclude_regex = ["_test.go", "_templ.go"]
   exclude_unchanged = false
   follow_symlink = false

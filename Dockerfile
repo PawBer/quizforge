@@ -2,11 +2,14 @@
 
 FROM golang:alpine AS base
 WORKDIR /app
-RUN apk add --no-cache git ca-certificates
+RUN apk add --no-cache git ca-certificates nodejs npm
 
 FROM base AS dev
 RUN go install github.com/air-verse/air@latest && \
     go install github.com/a-h/templ/cmd/templ@latest
+
+COPY package.json package-lock.json* ./
+RUN npm install
 
 EXPOSE 8080
 CMD ["air", "-c", ".air.toml"]
@@ -14,11 +17,15 @@ CMD ["air", "-c", ".air.toml"]
 FROM base AS builder
 RUN go install github.com/a-h/templ/cmd/templ@latest
 
+COPY package.json package-lock.json* ./
+RUN npm install
+
 COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
 RUN templ generate
+RUN npx tailwindcss -i ./input.css -o ./static/style.css
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /app/server ./cmd/web
 
 FROM alpine:latest AS prod
